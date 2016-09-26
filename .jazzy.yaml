@@ -1,0 +1,10 @@
+output: Reference
+clean: false
+sdk: iphone
+author: Mike Rudoy
+author_url: http://mikerudoy.github.io
+github_url: https://github.com/mikerudoy/ImageResizeExtension
+module: ImageResizeExtension
+readme: README.md
+min_acl: public
+theme: fullwidth
