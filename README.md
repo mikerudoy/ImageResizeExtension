@@ -3,7 +3,7 @@
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]()
 
 ## Description
-The extension provide methods for `UIImage` class to resize it resolution or disk space.
+The extension provides methods for `UIImage` class to resize it to specified resolution or specified disk space.
 
 ## Requirements
 - iOS 8.0+

@@ -413,6 +413,7 @@
 				B6FFAD3A1D994B0D005B282D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B6FFAD3B1D994B0D005B282D /* Build configuration list for PBXNativeTarget "ImageResizeExtensionTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				B6FFAD3D1D994B0D005B282D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

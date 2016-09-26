@@ -8,3 +8,5 @@ module: ImageResizeExtension
 readme: README.md
 min_acl: public
 theme: fullwidth
+
+
