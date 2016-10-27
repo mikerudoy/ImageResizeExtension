@@ -41,7 +41,7 @@ extension UIImage {
 
             UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
             self.drawInRect(CGRect(origin: CGPointZero, size: size))
-            scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+            scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             pngData = convertToPNGData(scaledImage)
             resizeMultiplier += UIImage.kResizeMultiplierStep
@@ -59,7 +59,7 @@ extension UIImage {
     private func makeScaledImage(size:CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
         self.drawInRect(CGRect(origin: CGPointZero, size: size))
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return scaledImage
     }
@@ -109,14 +109,14 @@ extension UIImage {
 
         let imageRect = imageSizeCalculator.getImageRect()
         let canvasSize = imageSizeCalculator.getCanvasSize()
-        let imageRef = self.CGImage;
+        let imageRef = self.CGImage!;
         let bitmap = CGBitmapContextCreate(nil,
                                            Int(canvasSize.width),
                                            Int(canvasSize.height),
                                            CGImageGetBitsPerComponent(imageRef),
                                            0,
-                                           CGImageGetColorSpace(imageRef),
-                                           CGImageGetBitmapInfo(imageRef).rawValue)
+                                           CGImageGetColorSpace(imageRef)!,
+                                           CGImageGetBitmapInfo(imageRef).rawValue)!
 
         CGContextSetInterpolationQuality(bitmap, UIImage.kResizeIntropolationQuality)
 
