@@ -128,4 +128,21 @@ extension UIImage {
         let resultImage = UIImage(CGImage: newImageRef)
         return resultImage
     }
+
+
+    /// Returns UIImage where large side will be equal to largeSide parameter, and image will be scaled to save itself proportions.
+    ///
+    /// - Parameter largeSide: The new size for larger size of image.
+    /// - Returns: The scaled image.
+    public func resizeToLargeSideEqual(largeSide: CGFloat) throws -> UIImage {
+        let height = self.size.height
+        let width = self.size.width
+        let sourceLargeSize = max(height, width)
+        let scale = largeSide / sourceLargeSize
+        do {
+            return try resizeTo(CGSize(width: width*scale, height: height*scale))
+        } catch ResizeException.BitmapContextCreateFail {
+            throw ResizeException.BitmapContextCreateFail
+        }
+    }
 }

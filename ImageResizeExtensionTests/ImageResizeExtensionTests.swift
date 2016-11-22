@@ -43,6 +43,16 @@ class UIImageExtensionTests: XCTestCase {
         XCTAssertEqual(result.size, CGSizeMake(300, 300))
     }
 
+    func testResizeToLargeSide() {
+        let image = loadSizedImage()
+        let result = try! image.resizeToLargeSideEqual(324.0)
+        XCTAssertEqual(result.size, CGSizeMake(324.0, 242.0))
+    }
+
+    func loadSizedImage() -> UIImage {
+        return takeResourceImageWithName("image_2592_1936.jpg")
+    }
+
     func loadLargeImage() -> UIImage {
         return takeResourceImageWithName("horizontal_2.6m.jpg")
     }

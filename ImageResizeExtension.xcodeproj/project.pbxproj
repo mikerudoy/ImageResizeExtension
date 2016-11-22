@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B67797FF1DE4247A003BBEFB /* image_2592_1936.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B67797FE1DE4247A003BBEFB /* image_2592_1936.jpg */; };
 		B6FFAD2F1D994B0D005B282D /* ImageResizeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FFAD241D994B0D005B282D /* ImageResizeExtension.framework */; };
 		B6FFAD421D994B37005B282D /* ImageResizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFAD3E1D994B37005B282D /* ImageResizeType.swift */; };
 		B6FFAD431D994B37005B282D /* ImageSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FFAD3F1D994B37005B282D /* ImageSizeCalculator.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B67797FE1DE4247A003BBEFB /* image_2592_1936.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_2592_1936.jpg; sourceTree = "<group>"; };
 		B6FFAD241D994B0D005B282D /* ImageResizeExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageResizeExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FFAD291D994B0D005B282D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6FFAD2E1D994B0D005B282D /* ImageResizeExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageResizeExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 		B6FFAD4A1D994BF0005B282D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B67797FE1DE4247A003BBEFB /* image_2592_1936.jpg */,
 				B6FFAD4B1D994C09005B282D /* horizontal_0.4m.jpg */,
 				B6FFAD4C1D994C09005B282D /* horizontal_2.6m.jpg */,
 				B6FFAD4D1D994C09005B282D /* vertical_1.7m.jpg */,
@@ -211,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B67797FF1DE4247A003BBEFB /* image_2592_1936.jpg in Resources */,
 				B6FFAD4F1D994C09005B282D /* horizontal_2.6m.jpg in Resources */,
 				B6FFAD501D994C09005B282D /* vertical_1.7m.jpg in Resources */,
 				B6FFAD4E1D994C09005B282D /* horizontal_0.4m.jpg in Resources */,
@@ -288,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -331,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
