@@ -1,4 +1,4 @@
-//
+ //
 //  UIImage+Extension.swift
 //
 //  Created by Mike Rudoy on 9/5/16.
@@ -105,10 +105,18 @@ extension UIImage {
 
         let imageSizeCalculator = ImageSizeCalculator(neededSize: newSize,
                                                       initialSize: size,
-                                                      resizeStrategy: ImageResizeType.Fill)
+                                                      resizeStrategy: ImageResizeType.Fit)
 
         let imageRect = imageSizeCalculator.getImageRect()
         let canvasSize = imageSizeCalculator.getCanvasSize()
+        let transposedRect:CGRect = CGRectMake(0, 0, imageRect.size.height, imageRect.size.width)
+
+        let transform = transformForOrientation(canvasSize)
+        let shouldTranspose =  self.imageOrientation == .Left
+                            || self.imageOrientation == .Right
+                            || self.imageOrientation == .LeftMirrored
+                            || self.imageOrientation == .RightMirrored
+
         let imageRef = self.CGImage!;
         let bitmap = CGBitmapContextCreate(nil,
                                            Int(canvasSize.width),
@@ -118,15 +126,52 @@ extension UIImage {
                                            CGImageGetColorSpace(imageRef)!,
                                            CGImageGetBitmapInfo(imageRef).rawValue)!
 
+        CGContextConcatCTM(bitmap, transform)
         CGContextSetInterpolationQuality(bitmap, UIImage.kResizeIntropolationQuality)
 
-        CGContextDrawImage(bitmap, imageRect, imageRef);
+        CGContextDrawImage(bitmap, shouldTranspose ? transposedRect : imageRect, imageRef);
 
         guard let newImageRef = CGBitmapContextCreateImage(bitmap) else {
             throw ResizeException.BitmapContextCreateFail
         }
         let resultImage = UIImage(CGImage: newImageRef)
         return resultImage
+    }
+
+    func transformForOrientation(newSize:CGSize) -> CGAffineTransform {
+        var transform:CGAffineTransform = CGAffineTransformIdentity
+        switch (self.imageOrientation) {
+        case .UpMirrored:
+            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
+            transform = CGAffineTransformScale(transform, -1, 1)
+        case .Down:
+            transform = CGAffineTransformTranslate(transform, newSize.width, newSize.height)
+            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case .DownMirrored:
+            transform = CGAffineTransformTranslate(transform, newSize.width, newSize.height)
+            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
+            transform = CGAffineTransformScale(transform, -1, 1)
+        case .Left:
+            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
+            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case .LeftMirrored:
+            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
+            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+            transform = CGAffineTransformTranslate(transform, newSize.height, 0)
+            transform = CGAffineTransformScale(transform, -1, 1)
+        case .Right:
+            transform = CGAffineTransformTranslate(transform, 0, newSize.height)
+            transform = CGAffineTransformRotate(transform, -CGFloat(M_PI_2))
+        case .RightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, newSize.height)
+            transform = CGAffineTransformRotate(transform, -CGFloat(M_PI_2))
+            transform = CGAffineTransformTranslate(transform, newSize.height, 0)
+            transform = CGAffineTransformScale(transform, -1, 1)
+        default:
+            break
+        }
+        return transform
     }
 
 

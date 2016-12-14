@@ -49,6 +49,22 @@ class UIImageExtensionTests: XCTestCase {
         XCTAssertEqual(result.size, CGSizeMake(324.0, 242.0))
     }
 
+    func testResizeToAlpha() {
+        let image = loadAlphaImage()
+        let result = try! image.resizeTo(CGSizeMake(300, 300))
+        XCTAssertEqual(result.size, CGSizeMake(300, 300))
+    }
+
+    func testResizeToLargeSideAlphaImages () {
+        let image = loadAlphaImage()
+        let result = try! image.resizeToLargeSideEqual(232.0)
+        XCTAssertEqual(result.size.width, 232.0)
+    }
+
+    func loadAlphaImage() -> UIImage {
+        return takeResourceImageWithName("alphaImage.png")
+    }
+
     func loadSizedImage() -> UIImage {
         return takeResourceImageWithName("image_2592_1936.jpg")
     }
