@@ -117,21 +117,27 @@ extension UIImage {
                             || self.imageOrientation == .LeftMirrored
                             || self.imageOrientation == .RightMirrored
 
-        let imageRef = self.CGImage!;
-        let bitmap = CGBitmapContextCreate(nil,
+        let imageRef = self.CGImage!
+        var bitmap = CGBitmapContextCreate(nil,
                                            Int(canvasSize.width),
                                            Int(canvasSize.height),
                                            CGImageGetBitsPerComponent(imageRef),
                                            0,
                                            CGImageGetColorSpace(imageRef)!,
-                                           CGImageGetBitmapInfo(imageRef).rawValue)!
+                                           CGImageGetBitmapInfo(imageRef).rawValue)
+        if bitmap == nil {
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            bitmap = CGBitmapContextCreate(nil, Int(canvasSize.width), Int(canvasSize.height), 8, Int(canvasSize.width) * 4, colorSpace, 1)!
+        }
 
-        CGContextConcatCTM(bitmap, transform)
-        CGContextSetInterpolationQuality(bitmap, UIImage.kResizeIntropolationQuality)
+        let unwrappedBitmap = bitmap!
 
-        CGContextDrawImage(bitmap, shouldTranspose ? transposedRect : imageRect, imageRef);
+        CGContextConcatCTM(unwrappedBitmap, transform)
+        CGContextSetInterpolationQuality(unwrappedBitmap, UIImage.kResizeIntropolationQuality)
 
-        guard let newImageRef = CGBitmapContextCreateImage(bitmap) else {
+        CGContextDrawImage(unwrappedBitmap, shouldTranspose ? transposedRect : imageRect, imageRef);
+
+        guard let newImageRef = CGBitmapContextCreateImage(unwrappedBitmap) else {
             throw ResizeException.BitmapContextCreateFail
         }
         let resultImage = UIImage(CGImage: newImageRef)
